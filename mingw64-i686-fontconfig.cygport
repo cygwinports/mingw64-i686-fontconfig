@@ -1,5 +1,8 @@
+CROSS_HOST="i686-w64-mingw32"
+inherit cross
+
 NAME="mingw64-i686-fontconfig"
-VERSION=2.8.0
+VERSION=2.10.95
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Font configuration library for Win32 toolchain"
@@ -10,8 +13,5 @@ mingw64-i686-gcc cross compiler, and installs into the
 HOMEPAGE="http://fontconfig.org/wiki/"
 SRC_URI="http://fontconfig.org/release/fontconfig-${VERSION}.tar.gz"
 SRC_DIR="fontconfig-${VERSION}"
-PATCH_URI="2.8.0-parallel-install.patch"
-CROSS_HOST="i686-w64-mingw32"
-inherit cross
 
 CYGCONF_ARGS="--disable-docs --with-arch=x86"
