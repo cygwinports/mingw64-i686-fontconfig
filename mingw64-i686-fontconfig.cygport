@@ -13,5 +13,11 @@ mingw64-i686-gcc cross compiler, and installs into the
 HOMEPAGE="http://fontconfig.org/wiki/"
 SRC_URI="http://fontconfig.org/release/fontconfig-${VERSION}.tar.bz2"
 SRC_DIR="fontconfig-${VERSION}"
+PATCH_URI="2.11.1-cross-mingw-ln-s.patch"
 
 CYGCONF_ARGS="--disable-docs"
+
+src_install() {
+	cd ${B}
+	cyginstall LN_S="cp"
+}
