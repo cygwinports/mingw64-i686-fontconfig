@@ -2,7 +2,7 @@ CROSS_HOST="i686-w64-mingw32"
 inherit cross
 
 NAME="mingw64-i686-fontconfig"
-VERSION=2.11.95
+VERSION=2.12.1
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Font configuration library for Win32 toolchain"
@@ -24,13 +24,13 @@ CYGCONF_ARGS="
 
 src_install() {
 	cd ${B}
-	cyginstall LN_S="cp"
+	cyginstall LN_S="cp -p"
 
 	dodir /etc/postinstall
 	cat > ${D}/etc/postinstall/${NAME}.sh <<_EOF
 sed -i -e "s|CYGWINFONTDIR|\`cygpath -m /usr/share/fonts\`|" ${CROSS_PREFIX}/etc/fonts/fonts.conf
 _EOF
 	cat > ${D}/etc/postinstall/zp_${NAME}_cache.sh <<_EOF
-${CROSS_BINDIR}/fc-cache -s
+${CROSS_BINDIR}/fc-cache -s || :
 _EOF
 }
